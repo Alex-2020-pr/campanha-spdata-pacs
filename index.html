@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integra+ Imagens SPDATA | PACS Integrado</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #004c99;
+            --secondary: #00a859;
+            --accent: #ff6600;
+            --light: #f5f9ff;
+            --dark: #333333;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 102, 204, 0.9), rgba(0, 76, 153, 0.9)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s forwards 0.5s;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s forwards 0.8s;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s forwards 1.1s;
+        }
+        
+        .cta-button:hover {
+            background-color: #e55c00;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 102, 0, 0.4);
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        /* Objetivos */
+        .objetivos {
+            background-color: var(--light);
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .card h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+        
+        /* Público-alvo */
+        .publico-alvo .cards-container {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        
+        .publico-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .publico-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--secondary);
+        }
+        
+        .publico-card:nth-child(2)::before {
+            background-color: var(--primary);
+        }
+        
+        .publico-card:nth-child(3)::before {
+            background-color: var(--accent);
+        }
+        
+        .publico-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .publico-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Promoções */
+        .promocoes {
+            background-color: var(--light);
+        }
+        
+        .promo-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .promo-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .promo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .promo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .promo-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .promo-card .promo-tag {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        /* Condições */
+        .condicoes {
+            text-align: center;
+        }
+        
+        .condicoes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 3rem;
+        }
+        
+        .condicoes-item {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .condicoes-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .condicoes-item h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+        
+        .condicoes-item .valor {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 1rem 0;
+        }
+        
+        /* Novas Seções */
+        .estrategia-comercial {
+            background-color: var(--light);
+        }
+        
+        .estrategia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .estrategia-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .estrategia-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .estrategia-card h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .estrategia-card .bonus {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .comparativo {
+            background-color: white;
+        }
+        
+        .comparativo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .comparativo-table th {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .comparativo-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .comparativo-table tr:nth-child(even) {
+            background-color: var(--light);
+        }
+        
+        .comparativo-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .vantagem {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .cta-section .cta-button {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .cta-section .cta-button:hover {
+            background-color: var(--light-gray);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        /* Animations */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-dark);
+                flex-direction: column;
+                padding: 20px 0;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .comparativo-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-clinic-medical"></i>
+                    <div class="logo-text">SPDATA</div>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#objetivos">Objetivos</a></li>
+                        <li><a href="#publico">Público</a></li>
+                        <li><a href="#promocoes">Promoções</a></li>
+                        <li><a href="#estrategia">Estratégia</a></li>
+                        <li><a href="#condicoes">Condições</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Integra+ Imagens SPDATA</h1>
+            <p>Potencialize seu sistema ERP com nosso PACS integrado. Mais eficiência, menos custos e atendimento superior para sua clínica ou hospital.</p>
+            <a href="#contato" class="cta-button">Solicitar Proposta Personalizada</a>
+        </div>
+    </section>
+
+    <!-- Objetivos -->
+    <section id="objetivos" class="objetivos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Objetivos</h2>
+            </div>
+            <div class="cards-container">
+                <div class="card">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h3>Conversão de Clientes</h3>
+                    <p>Converter clientes SPDATA que ainda não usam o PACS ou utilizam soluções de terceiros.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Aumento do Ticket Médio</h3>
+                    <p>Fidelizar e aumentar o valor por cliente através da integração completa (ERP + PACS).</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-users"></i>
+                    <h3>Custo Zero de Aquisição</h3>
+                    <p>Aproveitar a base existente de clientes sem custos adicionais de aquisição.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Público-alvo -->
+    <section id="publico" class="publico-alvo">
+        <div class="container">
+            <div class="section-title">
+                <h2>Público-Alvo</h2>
+            </div>
+            <div class="cards-container">
+                <div class="publico-card">
+                    <h3>Migração</h3>
+                    <p>Clientes que já utilizam outro sistema PACS e buscam uma solução integrada e mais eficiente.</p>
+                </div>
+                <div class="publico-card">
+                    <h3>Implantação</h3>
+                    <p>Clientes que possuem serviço de imagem mas ainda não implementaram um sistema PACS.</p>
+                </div>
+                <div class="publico-card">
+                    <h3>Expansão</h3>
+                    <p>Clientes que já utilizam o SPDATA PACS parcialmente e desejam expandir para outros setores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promoções -->
+    <section id="promocoes" class="promocoes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Promoções Exclusivas</h2>
+            </div>
+            <div class="promo-container">
+                <div class="promo-card">
+                    <span class="promo-tag">Desconto Progressivo</span>
+                    <h3>Quanto Antes, Mais Economia</h3>
+                    <p>1º cliente do mês: 30% de desconto por 6 meses</p>
+                    <p>2º e 3º clientes: 20% de desconto</p>
+                    <p>Demais: 10% de desconto</p>
+                </div>
+                <div class="promo-card">
+                    <span class="promo-tag">Zero Implantação</span>
+                    <h3>Adote o PACS SPDATA</h3>
+                    <p>Zeramos a taxa de implantação para contratações até 31/12/2025</p>
+                    <p>Inclui treinamento remoto gratuito</p>
+                </div>
+                <div class="promo-card">
+                    <span class="promo-tag">Plano de Fidelidade</span>
+                    <h3>Integração Completa</h3>
+                    <p>Desconto fixo de 10% no pacote ERP + PACS + Portal Médico</p>
+                    <p>Prioridade no suporte técnico</p>
+                </div>
+                <div class="promo-card">
+                    <span class="promo-tag">Trade-in</span>
+                    <h3>Troque seu PACS Antigo</h3>
+                    <p>3 meses gratuitos ao migrar de concorrente</p>
+                    <p>Migração totalmente assistida</p>
+                </div>
+                <div class="promo-card">
+                    <span class="promo-tag">Indicação</span>
+                    <h3>Indique e Ganhe</h3>
+                    <p>1 mês gratuito de manutenção para cada indicação que fechar</p>
+                    <p>Bônus em suporte premium</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estratégia Comercial -->
+    <section id="estrategia" class="estrategia-comercial">
+        <div class="container">
+            <div class="section-title">
+                <h2>Estratégia Comercial Aprimorada</h2>
+            </div>
+            <div class="estrategia-grid">
+                <div class="estrategia-card">
+                    <span class="bonus">Bonificação</span>
+                    <h3>Time Comercial</h3>
+                    <p><strong>Meta Base (10 contratos):</strong> 5% do valor da mensalidade por contrato</p>
+                    <p><strong>Meta Extra (15+ contratos):</strong> 10% do valor da mensalidade por contrato</p>
+                    <p>Incentivo direto baseado no valor do contrato fechado</p>
+                </div>
+                <div class="estrategia-card">
+                    <span class="bonus">Taxa de Implantação</span>
+                    <h3>Estratégia Diferenciada</h3>
+                    <p><strong>Clientes sem PACS:</strong> Taxa simbólica de implantação</p>
+                    <p><strong>Clientes com PACS concorrente:</strong> Isenção total da taxa + 30 dias de carência</p>
+                    <p>Redução da barreira de entrada para migração</p>
+                </div>
+                <div class="estrategia-card">
+                    <span class="bonus">Novas Ideias</span>
+                    <h3>Oportunidades Adicionais</h3>
+                    <p><strong>Pacote "Pronto para Usar":</strong> Inclui configuração básica de laudos</p>
+                    <p><strong>Programa de Sucesso do Cliente:</strong> Consultoria de otimização incluída</p>
+                    <p><strong>Upgrade Progressivo:</strong> Comece com módulo básico e evolua conforme necessidade</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparativo -->
+    <section class="comparativo">
+        <div class="container">
+            <div class="section-title">
+                <h2>Vantagens da Nossa Abordagem</h2>
+            </div>
+            <table class="comparativo-table">
+                <thead>
+                    <tr>
+                        <th>Benefício</th>
+                        <th>Clientes Sem PACS</th>
+                        <th>Clientes com PACS Concorrente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Taxa de Implantação</td>
+                        <td>Taxa simbólica (reduz barreira)</td>
+                        <td class="vantagem">Isenção total</td>
+                    </tr>
+                    <tr>
+                        <td>Carência Inicial</td>
+                        <td>Padrão (15 dias)</td>
+                        <td class="vantagem">30 dias de carência</td>
+                    </tr>
+                    <tr>
+                        <td>Migração de Dados</td>
+                        <td>Configuração padrão</td>
+                        <td class="vantagem">Migração assistida completa</td>
+                    </tr>
+                    <tr>
+                        <td>Treinamento</td>
+                        <td>Básico incluído</td>
+                        <td class="vantagem">Treinamento personalizado</td>
+                    </tr>
+                    <tr>
+                        <td>Período de Teste</td>
+                        <td>15 dias</td>
+                        <td class="vantagem">30 dias</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Condições -->
+    <section id="condicoes" class="condicoes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Condições e Prazos</h2>
+            </div>
+            <p>Campanha <strong>"Integra+ Imagens SPDATA"</strong> com vigência de <strong>01/11 a 31/12/2025</strong></p>
+            <p>Objetivo: <strong>10 novas implantações de PACS</strong></p>
+            
+            <div class="condicoes-grid">
+                <div class="condicoes-item">
+                    <h3>Meta Base</h3>
+                    <div class="valor">10 Contratos</div>
+                    <p>Bonificação de 5% do valor mensal por contrato</p>
+                </div>
+                <div class="condicoes-item">
+                    <h3>Meta Extra</h3>
+                    <div class="valor">15+ Contratos</div>
+                    <p>Bonificação de 10% do valor mensal por contrato</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Pronto para integrar seu sistema?</h2>
+            <p>Entre em contato conosco e descubra como o PACS SPDATA pode transformar a gestão de imagens da sua instituição com condições especiais.</p>
+            <a href="#contato" class="cta-button">Falar com Especialista</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SPDATA</h3>
+                    <p>Soluções integradas para saúde com mais de 20 anos de experiência no mercado.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> (11) 1234-5678</li>
+                        <li><i class="fas fa-envelope"></i> pacs@spdata.com.br</li>
+                        <li><i class="fas fa-map-marker-alt"></i> São Paulo, SP</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#objetivos">Objetivos</a></li>
+                        <li><a href="#publico">Público-Alvo</a></li>
+                        <li><a href="#promocoes">Promoções</a></li>
+                        <li><a href="#condicoes">Condições</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SPDATA - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('nav ul').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
