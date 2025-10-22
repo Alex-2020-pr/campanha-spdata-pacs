@@ -16,6 +16,10 @@
             --dark: #333333;
             --gray: #6c757d;
             --light-gray: #e9ecef;
+            --essential: #8c8c8c;
+            --standard: #3498db;
+            --professional: #9b59b6;
+            --enterprise: #f1c40f;
         }
         
         * {
@@ -445,6 +449,172 @@
             font-weight: 600;
         }
         
+        /* PACS Cloud */
+        .pacs-cloud {
+            background-color: var(--light);
+        }
+        
+        .planos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 3rem;
+        }
+        
+        .plano-card {
+            background: white;
+            border-radius: 10px;
+            padding: 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .plano-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .plano-header {
+            padding: 25px;
+            color: white;
+            text-align: center;
+        }
+        
+        .plano-essential .plano-header {
+            background-color: var(--essential);
+        }
+        
+        .plano-standard .plano-header {
+            background-color: var(--standard);
+        }
+        
+        .plano-professional .plano-header {
+            background-color: var(--professional);
+        }
+        
+        .plano-enterprise .plano-header {
+            background-color: var(--enterprise);
+        }
+        
+        .plano-body {
+            padding: 25px;
+        }
+        
+        .plano-body ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .plano-body ul li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .plano-body ul li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .plano-preco {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 20px 0;
+            color: var(--primary);
+        }
+        
+        .plano-tag {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        /* WhatsApp */
+        .whatsapp-section {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .whatsapp-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .whatsapp-section p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .whatsapp-button {
+            display: inline-block;
+            background-color: white;
+            color: #25D366;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .whatsapp-button:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        /* Tabela de Valores */
+        .tabela-valores {
+            background-color: white;
+        }
+        
+        .tabela-container {
+            overflow-x: auto;
+            margin-top: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+        
+        .tabela-valores table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .tabela-valores th {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .tabela-valores td {
+            padding: 15px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .tabela-valores tr:nth-child(even) {
+            background-color: var(--light);
+        }
+        
+        .tabela-valores tr:last-child td {
+            border-bottom: none;
+        }
+        
         /* CTA Section */
         .cta-section {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -581,6 +751,10 @@
                 display: block;
                 overflow-x: auto;
             }
+            
+            .planos-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -601,7 +775,8 @@
                         <li><a href="#objetivos">Objetivos</a></li>
                         <li><a href="#publico">Público</a></li>
                         <li><a href="#promocoes">Promoções</a></li>
-                        <li><a href="#estrategia">Estratégia</a></li>
+                        <li><a href="#pacs-cloud">PACS Cloud</a></li>
+                        <li><a href="#whatsapp">WhatsApp</a></li>
                         <li><a href="#condicoes">Condições</a></li>
                         <li><a href="#contato">Contato</a></li>
                     </ul>
@@ -764,7 +939,7 @@
                     </tr>
                     <tr>
                         <td>Carência Inicial</td>
-                        <td>Padrão (15 dias)</td>
+                        <td class="vantagem">30 dias de carência</td>
                         <td class="vantagem">30 dias de carência</td>
                     </tr>
                     <tr>
@@ -779,11 +954,170 @@
                     </tr>
                     <tr>
                         <td>Período de Teste</td>
-                        <td>15 dias</td>
+                        <td class="vantagem">30 dias</td>
                         <td class="vantagem">30 dias</td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </section>
+
+    <!-- PACS Cloud -->
+    <section id="pacs-cloud" class="pacs-cloud">
+        <div class="container">
+            <div class="section-title">
+                <h2>SPDATA PACS Cloud — Planos e Funcionalidades</h2>
+            </div>
+            <div class="planos-container">
+                <!-- Plano Essential -->
+                <div class="plano-card plano-essential">
+                    <div class="plano-header">
+                        <h3>🩶 ESSENTIAL</h3>
+                        <p>Ideal para clínicas pequenas e consultórios</p>
+                    </div>
+                    <div class="plano-body">
+                        <span class="plano-tag">Mais Popular</span>
+                        <div class="plano-preco">Sob Consulta</div>
+                        <ul>
+                            <li>Armazenamento em nuvem seguro até 500 GB</li>
+                            <li>Visualizador Web (DICOM Viewer básico)</li>
+                            <li>Upload automático de imagens DICOM</li>
+                            <li>Compartilhamento via link seguro</li>
+                            <li>Acesso multiusuário (até 3 usuários)</li>
+                            <li>Backup diário automático</li>
+                            <li>Suporte via e-mail/chat comercial</li>
+                        </ul>
+                        <p class="plano-indicado"><strong>Indicado para:</strong> Clínicas com até 2 modalidades de imagem (ex: RX e US).</p>
+                        <a href="#contato" class="cta-button" style="display: block; text-align: center; margin-top: 20px;">Solicitar Demonstração</a>
+                    </div>
+                </div>
+
+                <!-- Plano Standard -->
+                <div class="plano-card plano-standard">
+                    <div class="plano-header">
+                        <h3>💙 STANDARD</h3>
+                        <p>Perfeito para clínicas em crescimento</p>
+                    </div>
+                    <div class="plano-body">
+                        <span class="plano-tag">Teste Grátis 30 Dias</span>
+                        <div class="plano-preco">Sob Consulta</div>
+                        <ul>
+                            <li>Armazenamento em nuvem até 2 TB</li>
+                            <li>Visualizador Web Avançado (anotações, medições, zoom, MPR básico)</li>
+                            <li>Integração com RIS/ERP SPDATA</li>
+                            <li>Painel de produtividade e relatórios de uso</li>
+                            <li>Compartilhamento com médicos e pacientes via portal online</li>
+                            <li>Controle de permissões por usuário</li>
+                            <li>Suporte prioritário (horário comercial)</li>
+                        </ul>
+                        <p class="plano-indicado"><strong>Indicado para:</strong> Centros de imagem e clínicas de médio porte.</p>
+                        <a href="#contato" class="cta-button" style="display: block; text-align: center; margin-top: 20px;">Teste Grátis</a>
+                    </div>
+                </div>
+
+                <!-- Plano Professional -->
+                <div class="plano-card plano-professional">
+                    <div class="plano-header">
+                        <h3>💜 PROFESSIONAL</h3>
+                        <p>Para serviços de diagnóstico com alto volume</p>
+                    </div>
+                    <div class="plano-body">
+                        <span class="plano-tag">Implantação Zero</span>
+                        <div class="plano-preco">Sob Consulta</div>
+                        <ul>
+                            <li>Armazenamento até 10 TB</li>
+                            <li>Visualizador Diagnóstico Profissional (MPR, MIP, 3D Viewer)</li>
+                            <li>Ferramentas de comparação entre exames</li>
+                            <li>Worklist DICOM e integração com modalidades</li>
+                            <li>Inteligência de compressão automática</li>
+                            <li>Logs de auditoria e rastreabilidade completa</li>
+                            <li>Suporte técnico dedicado e remoto</li>
+                        </ul>
+                        <p class="plano-indicado"><strong>Indicado para:</strong> Hospitais e centros de diagnóstico com mais de 5 modalidades.</p>
+                        <a href="#contato" class="cta-button" style="display: block; text-align: center; margin-top: 20px;">Solicitar Proposta</a>
+                    </div>
+                </div>
+
+                <!-- Plano Enterprise -->
+                <div class="plano-card plano-enterprise">
+                    <div class="plano-header">
+                        <h3>💛 ENTERPRISE</h3>
+                        <p>Solução completa para grandes instituições</p>
+                    </div>
+                    <div class="plano-body">
+                        <span class="plano-tag">Personalizado</span>
+                        <div class="plano-preco">Sob Consulta</div>
+                        <ul>
+                            <li>Armazenamento ilimitado</li>
+                            <li>Data Center dedicado (Brasil / LGPD compliance)</li>
+                            <li>Inteligência artificial para triagem e priorização</li>
+                            <li>Dashboard executivo (indicadores e SLA em tempo real)</li>
+                            <li>Integração total com ERP Hospitalar / HIS</li>
+                            <li>Suporte 24/7 com SLA personalizado</li>
+                            <li>Treinamento de equipe incluso</li>
+                        </ul>
+                        <p class="plano-indicado"><strong>Indicado para:</strong> Hospitais, grupos de clínicas e redes regionais.</p>
+                        <a href="#contato" class="cta-button" style="display: block; text-align: center; margin-top: 20px;">Falar com Especialista</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Section -->
+    <section id="whatsapp" class="whatsapp-section">
+        <div class="container">
+            <h2>WhatsApp para Entrega de Resultados</h2>
+            <p>Oferecemos <strong>30 dias gratuitos</strong> do módulo de entrega de resultados via WhatsApp para todos os novos clientes!</p>
+            <p>Agilize a comunicação com pacientes e médicos com nossa solução integrada.</p>
+            <a href="#contato" class="whatsapp-button">Solicitar Demonstração</a>
+        </div>
+    </section>
+
+    <!-- Tabela de Valores WhatsApp -->
+    <section class="tabela-valores">
+        <div class="container">
+            <div class="section-title">
+                <h2>Planos de Mensagens WhatsApp</h2>
+            </div>
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Plano</th>
+                            <th>Mensagens</th>
+                            <th>Valor Mensal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Básico</strong></td>
+                            <td>até 500</td>
+                            <td>R$ 75,00</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Intermediário</strong></td>
+                            <td>até 1.000</td>
+                            <td>R$ 140,00</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Avançado</strong></td>
+                            <td>até 3.000</td>
+                            <td>R$ 345,00</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Corporativo</strong></td>
+                            <td>até 5.000</td>
+                            <td>R$ 520,00</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Via API da AM2</strong></td>
+                            <td>Mensagens Ilimitadas</td>
+                            <td>R$ 250,00/mês</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 
@@ -826,14 +1160,16 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>SPDATA</h3>
-                    <p>Soluções integradas para saúde com mais de 20 anos de experiência no mercado.</p>
+                    <p><strong>36 anos de experiência</strong> em soluções integradas para saúde.</p>
+                    <p>Oferecemos as melhores soluções em PACS integrado para sua instituição médica.</p>
                 </div>
                 <div class="footer-column">
                     <h3>Contato</h3>
                     <ul>
-                        <li><i class="fas fa-phone"></i> (11) 1234-5678</li>
-                        <li><i class="fas fa-envelope"></i> pacs@spdata.com.br</li>
-                        <li><i class="fas fa-map-marker-alt"></i> São Paulo, SP</li>
+                        <li><i class="fas fa-phone"></i> (31) 3399-2500</li>
+                        <li><i class="fas fa-envelope"></i> comercial@spdata.com.br</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Contagem, MG</li>
+                        <li><i class="fas fa-clock"></i> Segunda a Sexta: 8h às 18h</li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -842,12 +1178,14 @@
                         <li><a href="#objetivos">Objetivos</a></li>
                         <li><a href="#publico">Público-Alvo</a></li>
                         <li><a href="#promocoes">Promoções</a></li>
+                        <li><a href="#pacs-cloud">PACS Cloud</a></li>
+                        <li><a href="#whatsapp">WhatsApp</a></li>
                         <li><a href="#condicoes">Condições</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 SPDATA - Todos os direitos reservados</p>
+                <p>&copy; 2025 SPDATA - 36 anos de excelência em soluções para saúde. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
