@@ -450,95 +450,69 @@
             font-weight: 600;
         }
         
-        /* PACS Cloud */
+        /* PACS Cloud - Substituído pelo conteúdo do segundo arquivo */
         .pacs-cloud {
             background-color: var(--light);
         }
         
-        .planos-container {
+        .pacs-cloud .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
         }
         
-        .plano-card {
-            background: white;
-            border-radius: 10px;
-            padding: 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-            overflow: hidden;
-            position: relative;
+        .pacs-cloud .card {
+            background: #f7f9fb;
+            border: 1px solid #d8e0ea;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            padding: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         
-        .plano-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        .pacs-cloud .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.1);
         }
         
-        .plano-header {
-            padding: 25px;
-            color: white;
-            text-align: center;
-        }
-        
-        .plano-essential .plano-header {
-            background-color: var(--essential);
-        }
-        
-        .plano-standard .plano-header {
-            background-color: var(--standard);
-        }
-        
-        .plano-professional .plano-header {
-            background-color: var(--professional);
-        }
-        
-        .plano-enterprise .plano-header {
-            background-color: var(--enterprise);
-        }
-        
-        .plano-body {
-            padding: 25px;
-        }
-        
-        .plano-body ul {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-        
-        .plano-body ul li {
-            margin-bottom: 10px;
-            padding-left: 25px;
-            position: relative;
-        }
-        
-        .plano-body ul li:before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--secondary);
-            font-weight: bold;
-        }
-        
-        .plano-preco {
-            text-align: center;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin: 20px 0;
+        .pacs-cloud .card h3 {
             color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 8px;
         }
         
-        .plano-tag {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+        .pacs-cloud .card p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+        
+        .pacs-cloud ul.clean {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .pacs-cloud ul.clean li {
+            padding: 6px 0;
+            border-top: 1px solid #e5e9ef;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        
+        .pacs-cloud .note {
+            background: #e9f4ff;
+            border-left: 4px solid var(--primary);
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: var(--primary);
+            margin-top: 30px;
+            font-size: 0.95rem;
+        }
+        
+        .pacs-cloud .price {
+            color: var(--primary);
             font-weight: 600;
-            margin-bottom: 15px;
         }
         
         /* WhatsApp */
@@ -753,7 +727,7 @@
                 overflow-x: auto;
             }
             
-            .planos-container {
+            .pacs-cloud .grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -860,7 +834,7 @@
                 <div class="promo-card">
                     <span class="promo-tag">Integração Completa</span>
                     <h3>PACS + WhatsApp</h3>
-                    <p>Desconto fixo de 10% no pacote WhatsApp + PACS + integração laudos WhatsApp</p>
+                    <p>Desconto fixo de 10% no pacote PACS + integração laudos WhatsApp</p>
                                     </div>
                 <div class="promo-card">
                     <span class="promo-tag">Trade-in</span>
@@ -947,109 +921,142 @@
         </div>
     </section>
 
-    <!-- PACS Cloud -->
+    <!-- PACS Cloud - Substituído pelo conteúdo do segundo arquivo -->
     <section id="pacs-cloud" class="pacs-cloud">
         <div class="container">
             <div class="section-title">
-                <h2>SPDATA PACS Cloud — Planos e Funcionalidades</h2>
+                <h2>Planos e Funcionalidades do PACS Cloud</h2>
+                <p>Armazenamento seguro, visualização completa e laudos integrados</p>
             </div>
-            <div class="planos-container">
-                <!-- Plano Essential -->
-                <div class="plano-card plano-essential">
-                    <div class="plano-header">
-                        <h3>🩶 ESSENTIAL</h3>
-                        <p>Ideal para clínicas pequenas e consultórios</p>
-                    </div>
-                    <div class="plano-body">
-                        <span class="plano-tag">Mais Popular</span>
-                        <div class="plano-preco">R$ 590,00</div>
-                        <ul>
-                            <li>Armazenamento em nuvem seguro até 500 GB</li>
-                            <li>Visualizador Web (DICOM Viewer básico)</li>
-                            <li>Upload automático de imagens DICOM</li>
-                            <li>Compartilhamento via link seguro</li>
-                            <li>Usuários ilimitados</li>
-                            <li>Backup diário automático</li>
-                            <li>Suporte via e-mail/chat comercial</li>
-                        </ul>
-                        <p class="plano-indicado"><strong>Indicado para:</strong> Clínicas com até 2 modalidades de imagem (ex: RX e US).</p>
-                        <a href="#contato" class="cta-button" style="display: block; text-align: center; margin-top: 20px;">Solicitar Demonstração</a>
-                    </div>
+
+            <h2 style="color: var(--primary); font-size: 1.8rem; margin-top: 60px; border-left: 5px solid var(--primary); padding-left: 10px;">Planos de Armazenamento PACS Cloud</h2>
+            <p>Todos os planos incluem exatamente os mesmos recursos do sistema PACS, suporte técnico e ferramentas de visualização. A única diferença entre os planos é a quantidade de armazenamento disponível. A integração via API de laudos e o envio de mensagens via WhatsApp são recursos opcionais e podem ser contratados à parte.</p>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Plano 500 GB <span class="price">– R$ 670,00</span></h3>
+                    <p>Ideal para clínicas de pequeno porte ou início de operação (até duas modalidades).</p>
+                    <ul class="clean">
+                        <li>Armazenamento total: 500 GB (aproximadamente 50 mil RX)</li>
+                        <li>Todos os recursos do PACS disponíveis</li>
+                        <li>Backup automático e criptografia de dados</li>
+                        <li>Acesso web com SSL ativo e domínio personalizado</li>
+                        <li>Compatibilidade DICOM</li>
+                        <li>Suporte técnico incluso</li>
+                    </ul>
                 </div>
 
-                <!-- Plano Standard -->
-                <div class="plano-card plano-standard">
-                    <div class="plano-header">
-                        <h3>💙 STANDARD</h3>
-                        <p>Perfeito para clínicas em crescimento</p>
-                    </div>
-                    <div class="plano-body">
-                        <span class="plano-tag">Teste Grátis 30 Dias</span>
-                        <div class="plano-preco">R$ 980,00</div>
-                        <ul>
-                            <li>Armazenamento em nuvem até 1 TB</li>
-                            <li>Visualizador Web Avançado (anotações, medições, zoom, MPR básico)</li>
-                            <li>Integração com RIS/ERP SPDATA</li>
-                            <li>SLA de Laudos</li>
-                            <li>Laudos de OIT e ECG</li>
-                            <li>Compartilhamento com médicos e pacientes via portal online</li>
-                            <li>Controle de permissões por usuário</li>
-                            <li>Suporte prioritário 24x7</li>
-                        </ul>
-                        <p class="plano-indicado"><strong>Indicado para:</strong> Centros de imagem e clínicas de médio porte.</p>
-                        <a href="#contato" class="cta-button" style="display: block; text-align: center; margin-top: 20px;">Teste Grátis</a>
-                    </div>
+                <div class="card">
+                    <h3>Plano 1 TB <span class="price">– R$ 1.090,00</span></h3>
+                    <p>Para clínicas com maior volume de exames ou múltiplas modalidades.</p>
+                    <ul class="clean">
+                        <li>Armazenamento total: 1 TB (aproximadamente 100 mil RX)</li>
+                        <li>Todos os recursos do PACS disponíveis</li>
+                        <li>Backup automático e criptografia de dados</li>
+                        <li>Acesso web com SSL ativo e domínio personalizado</li>
+                        <li>Compatibilidade DICOM</li>
+                        <li>Suporte técnico incluso</li>
+                    </ul>
                 </div>
 
-                <!-- Plano Professional -->
-                <div class="plano-card plano-professional">
-                    <div class="plano-header">
-                        <h3>💜 PROFESSIONAL</h3>
-                        <p>Para serviços de diagnóstico com alto volume</p>
-                    </div>
-                    <div class="plano-body">
-                        <span class="plano-tag">Implantação Zero</span>
-                        <div class="plano-preco">Sob Consulta</div>
-                        <ul>
-                            <li>Armazenamento até 10 TB ou ilimitado</li>
-                            <li>Visualizador Diagnóstico Profissional (MPR, MIP, 3D Viewer)</li>
-                            <li>Ferramentas de comparação entre exames</li>
-                            <li>Worklist DICOM e integração com modalidades</li>
-                            <li>Inteligência de compressão automática</li>
-                            <li>Logs de auditoria e rastreabilidade completa</li>
-                            <li>Suporte técnico dedicado e remoto</li>
-                        </ul>
-                        <p class="plano-indicado"><strong>Indicado para:</strong> Hospitais e centros de diagnóstico com mais de 5 modalidades.</p>
-                        <a href="#contato" class="cta-button" style="display: block; text-align: center; margin-top: 20px;">Solicitar Proposta</a>
-                    </div>
+                <div class="card">
+                    <h3>Plano 2 TB <span class="price">– Solicite uma proposta</span></h3>
+                    <p>Voltado para centros de diagnóstico e hospitais com alto fluxo de exames.</p>
+                    <ul class="clean">
+                        <li>Armazenamento total: 2 TB (aproximadamente 200 mil RX)</li>
+                        <li>Todos os recursos do PACS disponíveis</li>
+                        <li>Backup automático e criptografia de dados</li>
+                        <li>Acesso web com SSL ativo e domínio personalizado</li>
+                        <li>Compatibilidade DICOM</li>
+                        <li>Suporte técnico incluso</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="note">
+                <strong>Recursos opcionais (contratação adicional)</strong>
+                <ul class="clean">
+                    <li>Integração via API de laudos</li>
+                    <li>Envio de resultados e imagens via WhatsApp</li>
+                </ul>
+            </div>
+
+            <h2 style="color: var(--primary); font-size: 1.8rem; margin-top: 60px; border-left: 5px solid var(--primary); padding-left: 10px;">Funcionalidades do Sistema PACS</h2>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>🔐 Acesso e Perfis</h3>
+                    <ul class="clean">
+                        <li>Login por navegador (sem necessidade de instalação)</li>
+                        <li>Recuperação de senha e solicitação de acesso online</li>
+                        <li>Perfis: Administrador, Radiologista, Técnico e Solicitante</li>
+                        <li>Controle de unidades por usuário</li>
+                        <li>Logs detalhados (usuário e exame)</li>
+                    </ul>
                 </div>
 
-                <!-- Plano Enterprise -->
-                <div class="plano-card plano-enterprise">
-                    <div class="plano-header">
-                        <h3>💛 ENTERPRISE</h3>
-                        <p>Solução completa para grandes instituições</p>
-                    </div>
-                    <div class="plano-body">
-                        <span class="plano-tag">Personalizado</span>
-                        <div class="plano-preco">Sob Consulta</div>
-                        <ul>
-                            <li>Armazenamento ilimitado</li>
-                            <li>Data Center dedicado (Brasil)</li>
-                            <li>Dashboard executivo (indicadores e SLA em tempo real)</li>
-                            <li>Integração total com ERP Hospitalar / HIS</li>
-                            <li>Suporte 24/7 com SLA personalizado</li>
-                            <li>Treinamento de equipe incluso</li>
-                        </ul>
-                        <p class="plano-indicado"><strong>Indicado para:</strong> Hospitais, grupos de clínicas e redes regionais.</p>
-                        <a href="#contato" class="cta-button" style="display: block; text-align: center; margin-top: 20px;">Falar com Especialista</a>
-                    </div>
+                <div class="card">
+                    <h3>🏥 Cadastros e Gerenciamento</h3>
+                    <ul class="clean">
+                        <li>Controle de acesso, assinaturas digitais e permissões</li>
+                        <li>Exames por modalidade e sigla</li>
+                        <li>Cadastro completo de pacientes com CPF, CNS e CEP automático</li>
+                        <li>Criação e reutilização de frases e matrizes padrão</li>
+                    </ul>
                 </div>
+
+                <div class="card">
+                    <h3>🧠 Exames e Fluxo de Trabalho</h3>
+                    <ul class="clean">
+                        <li>Tela principal com busca, laudo e liberação</li>
+                        <li>Filtros avançados por paciente, modalidade, convênio e data</li>
+                        <li>Anexos (PDF, imagens, áudio, XLS, DOC, CSV, JSON, ZIP)</li>
+                        <li>Revisão de laudos e controle de pendências</li>
+                        <li>Laudo com assinatura digital e carimbo de data/hora</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>📊 Visualização e Relatórios</h3>
+                    <ul class="clean">
+                        <li>Visualizador DICOM com ferramentas completas</li>
+                        <li>Comparação de exames lado a lado</li>
+                        <li>Relatórios gerenciais (produtividade, faturamento, etc.)</li>
+                        <li>Relatórios por radiologista, modalidade, convênio e local</li>
+                        <li>Gráficos e exportação para Excel</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>⚙️ Configurações e Integrações</h3>
+                    <ul class="clean">
+                        <li>Integração com sistemas de gestão (SPDATA, etc.)</li>
+                        <li>Configuração de estações DICOM</li>
+                        <li>Configuração de impressão e etiquetas</li>
+                        <li>Configuração de convênios e tabelas</li>
+                        <li>Configuração de impressão e etiquetas</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🔒 Segurança e Conformidade</h3>
+                    <ul class="clean">
+                        <li>Armazenamento em nuvem com criptografia</li>
+                        <li>Backup automático e recuperação de dados</li>
+                        <li>Conformidade com LGPD</li>
+                        <li>Auditoria completa de acessos</li>
+                        <li>Assinatura digital e carimbo de tempo</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="note">
+                <strong>Importante:</strong> Todos os planos incluem exatamente os mesmos recursos do sistema PACS, suporte técnico e ferramentas de visualização. A única diferença entre os planos é a quantidade de armazenamento disponível. A integração via API de laudos e o envio de mensagens via WhatsApp são recursos opcionais e podem ser contratados à parte.
             </div>
         </div>
     </section>
 
-    <!-- WhatsApp Section -->
+    <!-- WhatsApp -->
     <section id="whatsapp" class="whatsapp-section">
         <div class="container">
             <h2>WhatsApp para Entrega de Resultados</h2>
@@ -1058,7 +1065,7 @@
             <a href="#contato" class="whatsapp-button">Solicitar Demonstração</a>
         </div>
     </section>
-
+    
     <!-- Tabela de Valores WhatsApp -->
     <section class="tabela-valores">
         <div class="container">
@@ -1130,16 +1137,17 @@
         </div>
     </section>
 
+
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
-            <h2>Pronto para integrar seu sistema?</h2>
-            <p>Entre em contato conosco e descubra como o PACS SPDATA pode transformar a gestão de imagens da sua instituição com condições especiais.</p>
-            <a href="#contato" class="cta-button">Falar com Especialista</a>
+            <h2>Pronto para transformar sua gestão de imagens médicas?</h2>
+            <p>Entre em contato conosco e descubra como o PACS SPDATA pode otimizar seus processos e melhorar o atendimento aos seus pacientes.</p>
+            <a href="#contato" class="cta-button">Solicitar Demonstração</a>
         </div>
     </section>
 
-    <!-- Footer -->
+  <!-- Footer -->
     <footer id="contato">
         <div class="container">
             <div class="footer-content">
@@ -1180,7 +1188,7 @@
         document.querySelector('.mobile-menu').addEventListener('click', function() {
             document.querySelector('nav ul').classList.toggle('active');
         });
-
+        
         // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1200,6 +1208,16 @@
                     document.querySelector('nav ul').classList.remove('active');
                 }
             });
+        });
+        
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if(window.scrollY > 100) {
+                header.style.backgroundColor = 'var(--primary-dark)';
+            } else {
+                header.style.backgroundColor = 'transparent';
+            }
         });
     </script>
 </body>
